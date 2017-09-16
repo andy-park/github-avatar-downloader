@@ -1,24 +1,22 @@
 var request = require("request");
-var GITHUB_USER = "andy-park";
-var GITHUB_TOKEN = "118d5440418efdbd6334c720dc2d6a6bb2ac7a63";
 console.log("Welcome to the GitHub Avatar Downloader!");
 
+var GITHUB_USER = "andy-park";
+var GITHUB_TOKEN = "8220f2e7b132073a3ef7545f6efa7b10c2b4b864";
 var repoOwner = "jquery";
 var repoName = "jquery";
+var requestURL = "https://" + GITHUB_USER + ":" + GITHUB_TOKEN + "@api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors";
 
-  var requestURL = "https://" + GITHUB_USER + ":" + GITHUB_TOKEN + "@api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors";
-  console.log(requestURL);
 
-  request.get("api.github.com/repos/jquery/jquery/contributors");
+function getRepoContributors(repoOwner, repoName, cb) {
+  request.get(requestURL)
+    .on("response", function (response) {
+      console.log("body: ", response);
+    })
 
-// function getRepoContributors(repoOwner, repoName, cb) {
-  // request.get(host.avatar_url)
+};
+console.log(requestURL);
 
-//   var requestURL = "https://" + GITHUB_USER + ":" + GITHUB_TOKEN + "@api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors";
-
-//   request.get("api.github.com/repos/jquery/jquery/contributors")
-//     .on("error", function (err) {
-//       throw err;
-//     })
-//   }
-// getRepoContributors()
+getRepoContributors("jquery", "jquery", function (err, results) {
+  console.log("Errors: ", err);
+});
