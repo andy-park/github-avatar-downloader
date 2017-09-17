@@ -12,10 +12,15 @@ function getRepoContributors(repoOwner, repoName, cb) {
   request.get(requestURL)
     .on("response", function (response) {
       console.log("body: ", response);
+
+function findAvatar(err,)
+      for (var i = 0; i < response.length; i++) {
+        var findAvatar = response.length
+      } console.log(response.length[i].avatar_url);
     })
 
 };
-console.log(requestURL);
+// console.log(requestURL);
 
 getRepoContributors("jquery", "jquery", function (err, results) {
   console.log("Errors: ", err);
